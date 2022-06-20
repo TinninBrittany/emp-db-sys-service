@@ -1,30 +1,18 @@
-package com.employeedatabasesystem.domain;
+package com.employeedatabasesystem.service.model;
 
-import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name="employees")
-public class Employee {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column(name = "first_name")
+public class EmployeeData {
+    private Long id;
     private String firstName;
-
-    @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "email_id")
     private String emailId;
 
-    public Employee() {
+    public EmployeeData() {
     }
 
-    public Employee(String firstName, String lastName, String emailId) {
-        super();
+    public EmployeeData(Long id, String firstName, String lastName, String emailId) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
@@ -32,6 +20,10 @@ public class Employee {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -61,19 +53,19 @@ public class Employee {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Employee)) return false;
-        Employee employee = (Employee) o;
-        return firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && emailId.equals(employee.emailId);
+        if (!(o instanceof EmployeeData)) return false;
+        EmployeeData that = (EmployeeData) o;
+        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(emailId, that.emailId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, emailId);
+        return Objects.hash(id, firstName, lastName, emailId);
     }
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "EmployeeData{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -81,3 +73,5 @@ public class Employee {
                 '}';
     }
 }
+
+

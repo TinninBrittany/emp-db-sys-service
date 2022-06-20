@@ -1,12 +1,10 @@
 package com.employeedatabasesystem.controller;
 
-import com.employeedatabasesystem.domain.Employee;
 import com.employeedatabasesystem.service.EmployeeService;
+import com.employeedatabasesystem.service.model.EmployeeData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +17,13 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
-    public List<Employee> getAllEmployees() {
+    public List<EmployeeData> getAllEmployees() {
         return employeeService.getAllEmployees();
+    }
+
+    @PostMapping("/employees")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createEmployee(@RequestBody EmployeeData employee) {
+        employeeService.saveEmployee(employee);
     }
 }
