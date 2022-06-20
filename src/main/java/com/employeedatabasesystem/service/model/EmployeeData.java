@@ -11,8 +11,7 @@ public class EmployeeData {
     public EmployeeData() {
     }
 
-    public EmployeeData(Long id, String firstName, String lastName, String emailId) {
-        this.id = id;
+    public EmployeeData(String firstName, String lastName, String emailId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailId = emailId;
