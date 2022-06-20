@@ -1,1 +1,18 @@
 
+spring:
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/employee_database_system
+    username: postgres
+    password: 1234
+  jpa:
+    generate-ddl: true
+    show_sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
